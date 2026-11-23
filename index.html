@@ -104,6 +104,11 @@ header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:spac
 .hint2{font-size:11.5px;color:var(--muted);margin:0}
 .foot2{font-size:11.5px;color:var(--muted);margin-top:24px;text-align:center}
 .foot2 a{color:inherit}
+.top .guide{font-size:13.5px;color:var(--wine);text-decoration:none;border:1px solid var(--wine);border-radius:999px;padding:4px 12px;align-self:center}
+.top .guide:hover{background:var(--wine);color:#fff}
+.first{margin:12px 0 0;padding:10px 14px;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--wine);font-size:13.5px}
+.first[hidden]{display:none}
+.first a{color:var(--wine)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/korean-lunar-calendar@0.3.6/dist/korean-lunar-calendar.min.js"></script>
 </head>
@@ -113,7 +118,9 @@ header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:spac
 
   <header class="top">
     <h1 class="title">일주 캘린더<small>DAILY PILLAR DIARY</small></h1>
+    <a class="guide" href="guide.html">사용 설명서 →</a>
   </header>
+  <p class="first" id="first" hidden>처음이세요? 왜 쓰는지, 어떻게 쓰는지 <a href="guide.html">사용 설명서</a>를 먼저 봐 주세요. 내 일주는 아래 사람 칸에서 생년월일로 찾을 수 있어요.</p>
 
   <div class="people" id="people"></div>
   <p class="hint">일주를 알면 목록에서 고르고, 모르면 '모름'으로 두고 양력·음력을 고른 뒤 생년월일을 넣어 '생년월일로 조회'를 눌러요. '달력에 표시'를 끄면 그 사람의 충·합 표시가 달력에서 잠시 빠져요. 최대 4명.</p>
@@ -358,6 +365,7 @@ $("wipe").onclick=()=>{
 $("prev").onclick=()=>{M--; if(M<1){M=12;Y--} render()};
 $("next").onclick=()=>{M++; if(M>12){M=1;Y++} render()};
 drawPeople(); render();
+if(!Object.keys(STORE.entries).length && people.every(p=>p.idx<0)) $("first").hidden=false;
 </script>
 </body>
 </html>

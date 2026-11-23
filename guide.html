@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>사용 설명서 · 일주 캘린더</title>
+<meta name="description" content="일주 캘린더를 왜, 어떻게 쓰는지. 내 일주 찾기부터 관찰 일기, 기록 백업까지.">
+<meta name="theme-color" content="#F1EFE0">
+<link rel="icon" type="image/png" href="icon-180.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{--bg:#F1EFE0;--paper:#FBFAF3;--ink:#36382B;--muted:#65684F;--line:#D8D6BF;--olive:#C4C99B;--wine:#8C4A55;
+  --serif:"Gowun Batang",serif;--sans:"Pretendard",system-ui,"Malgun Gothic",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.75}
+.wrap{max-width:760px;margin:0 auto;padding:22px 16px 56px}
+.back{font-size:13px;color:var(--muted)}
+.back a{color:inherit}
+h1{font-family:var(--serif);font-weight:400;font-size:30px;margin:14px 0 4px;line-height:1.3}
+.lede{color:var(--muted);margin:0 0 22px;word-break:keep-all}
+.cta{display:inline-block;padding:8px 18px;border-radius:999px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:14px}
+.cta:hover{background:var(--wine)}
+.cta:focus-visible,a:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+section{border-top:1px solid var(--ink);padding-top:12px;margin-top:34px}
+h2{font-family:var(--serif);font-weight:400;font-size:21px;margin:0 0 10px}
+h3{font-size:15.5px;margin:18px 0 4px}
+p{margin:0 0 10px;word-break:keep-all}
+ol,ul{margin:0 0 10px;padding-left:22px}
+li{margin:4px 0;word-break:keep-all}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:14px 16px;margin:12px 0}
+.order{font-size:13px;letter-spacing:.02em;color:var(--wine);font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 12px}
+th,td{text-align:left;padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;white-space:nowrap}
+.tag{display:inline-block;font-size:12px;padding:0 7px;border-radius:3px;line-height:1.7;white-space:nowrap}
+.t-chung{background:var(--wine);color:#fff}.t-hap{background:var(--olive)}.t-hyung{border:1px solid var(--wine);color:var(--wine)}.t-same{background:var(--ink);color:var(--bg)}
+.eg{color:var(--muted);font-size:13.5px}
+.small{font-size:13px;color:var(--muted)}
+.foot{margin-top:40px;text-align:center;font-size:12.5px;color:var(--muted)}
+.foot a{color:inherit}
+@media (max-width:560px){h1{font-size:25px}th{white-space:normal}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="back"><a href="./">← 일주 캘린더로 돌아가기</a></p>
+  <h1>일주 캘린더 사용 설명서</h1>
+  <p class="lede">내 일주와 그날의 일진이 어떻게 만나는지 달력에서 보고, 하루를 관찰 일기로 남기는 도구예요. 운세를 맞히는 앱이 아니라, 나를 관찰하는 습관을 돕는 앱이에요.</p>
+  <a class="cta" href="./">지금 시작하기 →</a>
+
+  <section>
+    <h2>왜 쓰나요</h2>
+    <p>사주에서 <b>일주</b>는 태어난 날의 간지(예: 甲子)이고, <b>일진</b>은 매일 바뀌는 그날의 간지예요. 둘이 부딪히거나(충) 묶이는(합) 날이 있다고들 하죠.</p>
+    <p>이 캘린더는 그걸 <b>미리 정해진 운명으로 보지 않고, 관찰할 거리</b>로 써요.</p>
+    <ul>
+      <li>표시가 있는 날 아침에 <b>"오늘은 무엇을 지켜볼까"</b>를 한 줄 정해요.</li>
+      <li>하루가 끝나면 <b>실제로 있었던 일, 감정, 내가 한 선택</b>을 적어요.</li>
+      <li>그리고 아침에 정한 것과 맞춰 봐요. 맞았는지보다 <b>내가 어떤 상황에서 어떻게 반응하는지</b>가 쌓이는 게 핵심이에요.</li>
+    </ul>
+    <div class="box">
+      <p class="order">무엇을 더 믿을까 (우선순위)</p>
+      <p style="margin:0">실제 행동 › 반복된 선택 › 일과 삶의 증거 › 해석 › 사주 참고</p>
+      <p class="small" style="margin:6px 0 0">사주 표시는 맨 마지막 참고예요. 실제로 한 일이 언제나 먼저예요.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>5분 만에 시작하기</h2>
+    <h3>1. 내 일주 찾기</h3>
+    <ol>
+      <li>맨 위 사람 칸에서 일주 목록이 <b>'모름'</b>이면, 옆의 <b>양력/음력</b>을 고르세요. 음력이면 필요할 때 <b>윤달</b>도 체크해요.</li>
+      <li>생년월일을 <b>1990-01-30</b>처럼 적어요. 1990.1.30, 19900130도 돼요.</li>
+      <li><b>'생년월일로 조회'</b>를 누르면 내 일주가 채워져요.</li>
+    </ol>
+    <p class="eg">내 일주를 이미 알면 목록에서 바로 골라도 돼요.</p>
+    <h3>2. 함께 볼 사람 더하기 (선택)</h3>
+    <p>'+ 사람 더하기'로 가족, 동료, 연인 등 최대 4명까지 넣을 수 있어요. 사람마다 색이 달라서 달력에서 누구의 표시인지 구분돼요. 날짜를 누르면 오른쪽 '사람끼리' 칸에서 두 사람의 일주끼리도 비교해요.</p>
+    <p class="eg">'달력에 표시' 체크를 끄면 그 사람의 표시만 잠시 숨겨져요.</p>
+    <h3>3. 달력 읽기</h3>
+    <ul>
+      <li>칸마다 <b>날짜, 그날의 일진</b>(한자·한글)이 있어요. 점 색은 그날 천간의 오행이에요(木·火·土·金·水).</li>
+      <li>내 일주와 작용이 있는 날에는 아래 표시가 붙어요.</li>
+      <li>오른쪽 아래 <b>'이번 달 관찰할 날'</b>에 표시가 있는 날이 모여 있어요.</li>
+      <li>오른쪽 위에 <b>작은 점</b>이 있는 칸은 내가 기록을 남긴 날이에요.</li>
+    </ul>
+    <h3>4. 기록하기</h3>
+    <p>날짜를 누르고 오른쪽(핸드폰은 아래) 칸에 적으면 <b>자동으로 저장</b>돼요. 저장 버튼은 없어요.</p>
+    <h3>5. 핸드폰 홈 화면에 추가하기</h3>
+    <ul>
+      <li><b>아이폰:</b> Safari로 열고 → 공유 버튼 → '홈 화면에 추가'</li>
+      <li><b>안드로이드:</b> Chrome으로 열고 → 오른쪽 위 ⋮ → '홈 화면에 추가' 또는 '앱 설치'</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>표시의 뜻</h2>
+    <p class="small">전통 명리의 기본 규칙을 따른 '관찰할 거리'예요. 좋은 날·나쁜 날이라는 뜻이 아니에요.</p>
+    <table>
+      <tr><th>표시</th><th>뜻</th><th>이렇게 관찰해 보세요</th></tr>
+      <tr><td><span class="tag t-chung">간충 · 지충</span></td><td>내 일주와 그날이 <b>부딪힘</b>. 천간끼리(간충), 지지끼리(지충)</td><td>계획이 바뀌거나 의견이 부딪힐 때 내가 어떻게 반응하나</td></tr>
+      <tr><td><span class="tag t-chung">천극지충</span></td><td>천간과 지지가 <b>둘 다</b> 부딪힘</td><td>하루의 흐름이 평소와 다른지, 변화에 대한 내 태도</td></tr>
+      <tr><td><span class="tag t-hap">간합 · 지합</span></td><td>서로 <b>묶이고 끌림</b></td><td>누군가와 가까워지거나 함께하게 되는 장면, 그때의 마음</td></tr>
+      <tr><td><span class="tag t-hyung">형</span></td><td><b>마찰·조정</b></td><td>작은 불편이나 다시 맞춰야 하는 일이 생길 때의 내 선택</td></tr>
+      <tr><td><span class="tag t-same">같은 일주 · 같은지지</span></td><td>그날이 내 일주(또는 일지)와 <b>같음</b></td><td>나다운 선택을 했는지, 평소 습관이 더 드러나는지</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>기록 여섯 칸</h2>
+    <table>
+      <tr><th>칸</th><th>언제</th><th>무엇을</th></tr>
+      <tr><td>PRE-SET LENS</td><td>그날 아침</td><td>오늘 무엇을 지켜볼지 한 줄. <b>나중에 고치지 않기</b>가 원칙이에요.<br><span class="eg">예: 회의에서 내 의견이 막힐 때 내가 어떻게 하는지</span></td></tr>
+      <tr><td>FACT</td><td>하루 끝</td><td>실제로 있었던 일. 해석 없이 본 대로.<br><span class="eg">예: 오후 회의에서 일정이 이틀 당겨졌다</span></td></tr>
+      <tr><td>EMOTION</td><td>하루 끝</td><td>가장 강했던 감정 하나와 그 세기</td></tr>
+      <tr><td>ACTION</td><td>하루 끝</td><td>내가 한 말, 고른 것, 하지 않기로 한 것</td></tr>
+      <tr><td>CROSS-CHECK</td><td>하루 끝 또는 며칠 뒤</td><td>아침의 렌즈와 실제가 맞았나. 모르겠으면 '판단 보류'라고 적어도 돼요</td></tr>
+      <tr><td>ONE LINE</td><td>언제든</td><td>오늘을 한 문장으로</td></tr>
+    </table>
+    <p class="small">다 채우지 않아도 돼요. 한 칸만 써도 그날은 기록한 날로 표시돼요.</p>
+  </section>
+
+  <section>
+    <h2>내 기록은 어디에 저장되나요</h2>
+    <div class="box">
+      <p style="margin:0"><b>지금 쓰는 그 기기의 브라우저 안에만</b> 저장돼요. 인터넷 어디로도 보내지 않아서 만든 사람을 포함해 누구도 내 기록을 볼 수 없어요.</p>
+    </div>
+    <ul>
+      <li><b>백업:</b> '내 기록' 칸의 <b>'파일로 내려받기'</b>를 가끔 눌러 두세요. 기록이 파일 하나로 저장돼요.</li>
+      <li><b>다른 기기로 옮기기:</b> 내려받은 파일을 새 기기에서 열고 <b>'불러오기'</b>로 넣어요. 핸드폰과 컴퓨터는 자동으로 이어지지 않아요.</li>
+      <li><b>사라질 수 있는 경우:</b> 브라우저의 방문 기록·사이트 데이터를 지울 때, 개인정보 보호(시크릿) 창에서 쓸 때. 아이폰 Safari는 오래 열지 않은 사이트의 데이터를 지우기도 해서 <b>홈 화면에 추가</b>해 두는 게 좋아요.</li>
+      <li><b>모두 지우기:</b> '모두 지우기'를 두 번 누르면 이 기기의 기록과 사람 목록이 모두 지워져요. 되돌릴 수 없어요.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>알아 두면 좋은 점</h2>
+    <ul>
+      <li><b>밤 11시 이후에 태어났다면</b> 전통 방식(자시)에 따라 일주가 다음 날로 보기도 해요. 이 캘린더는 날짜로만 계산해요.</li>
+      <li><b>월주</b>는 절기 시작일을 대략으로 넣어서 절기 경계 날에는 하루 차이가 날 수 있어요. 정확한 값은 만세력 앱과 비교해 보세요.</li>
+      <li>음력 변환은 한국천문연구원 자료를 바탕으로 한 공개 도구(korean-lunar-calendar)를 써요. 인터넷이 연결돼 있어야 해요.</li>
+      <li>이 캘린더는 <b>관찰을 돕는 도구</b>예요. 건강, 돈, 관계 같은 중요한 결정의 근거로 쓰지 마세요.</li>
+    </ul>
+  </section>
+
+  <p class="foot">일주 캘린더 · 만든 사람 <a href="https://lavieflyb.github.io/" target="_blank" rel="noopener">flyb</a><br><a href="./">일주 캘린더 열기</a></p>
+</div>
+</body>
+</html>
