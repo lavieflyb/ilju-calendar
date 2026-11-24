@@ -38,6 +38,10 @@ header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:spac
 .person input.birth{width:110px}
 .person .leap{display:flex;align-items:center;gap:3px;font-size:12px;color:var(--muted)}
 .person .leap[hidden]{display:none}
+.person .tm{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
+.person .tm label{display:flex;align-items:center;gap:3px;cursor:pointer}
+.person input.btime{font:inherit;font-size:12.5px;padding:3px 5px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:3px}
+.person input.btime:disabled{opacity:.45}
 .person .pmsg{flex-basis:100%;font-size:11.5px;color:var(--muted)}
 .person button,.add{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--bg);color:var(--muted);border-radius:999px;padding:2px 9px;cursor:pointer}
 .person button:hover,.add:hover{border-color:var(--wine);color:var(--wine)}
@@ -123,7 +127,7 @@ header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:spac
   <p class="first" id="first" hidden>처음이세요? 왜 쓰는지, 어떻게 쓰는지 <a href="guide.html">사용 설명서</a>를 먼저 봐 주세요. 내 일주는 아래 사람 칸에서 생년월일로 찾을 수 있어요.</p>
 
   <div class="people" id="people"></div>
-  <p class="hint">일주를 알면 목록에서 고르고, 모르면 '모름'으로 두고 양력·음력을 고른 뒤 생년월일을 넣어 '생년월일로 조회'를 눌러요. '달력에 표시'를 끄면 그 사람의 충·합 표시가 달력에서 잠시 빠져요. 최대 4명.</p>
+  <p class="hint">일주를 알면 목록에서 고르고, 모르면 '모름'으로 두고 양력·음력을 고른 뒤 생년월일(아는 경우 태어난 시간도)을 넣어 '생년월일로 조회'를 눌러요. '달력에 표시'를 끄면 그 사람의 충·합 표시가 달력에서 잠시 빠져요. 최대 4명.</p>
 
   <div class="bar">
     <button id="prev" aria-label="이전 달">← 이전</button>
@@ -216,7 +220,7 @@ let CAN=true, STORE={people:null, entries:{}};
 try{ const raw=localStorage.getItem(KEY); if(raw){ const o=JSON.parse(raw); if(o&&typeof o==="object"){ STORE.people=Array.isArray(o.people)?o.people:null; STORE.entries=(o.entries&&typeof o.entries==="object")?o.entries:{}; } }
      localStorage.setItem(KEY+"-t","1"); localStorage.removeItem(KEY+"-t"); }catch(e){ CAN=false }
 try{ navigator.storage&&navigator.storage.persist&&navigator.storage.persist(); }catch(e){}
-const cleanPerson=p=>({name:String(p.name||"?").slice(0,8),idx:Number.isInteger(p.idx)&&p.idx>=-1&&p.idx<60?p.idx:-1,on:p.on!==false,birth:String(p.birth||"").slice(0,20),cal:p.cal==="lunar"?"lunar":"solar",leap:!!p.leap});
+const cleanPerson=p=>({name:String(p.name||"?").slice(0,8),idx:Number.isInteger(p.idx)&&p.idx>=-1&&p.idx<60?p.idx:-1,on:p.on!==false,birth:String(p.birth||"").slice(0,20),cal:p.cal==="lunar"?"lunar":"solar",leap:!!p.leap,time:/^\d{2}:\d{2}$/.test(p.time||"")?p.time:""});
 let people=(STORE.people&&STORE.people.length?STORE.people:[{name:"나",idx:-1,on:true}]).slice(0,4).map(cleanPerson);
 let lastSaved=null;
 function persist(){
@@ -237,7 +241,7 @@ function drawPeople(){
     const opts=`<option value="-1"${p.idx<0?" selected":""}>모름</option>`+Array.from({length:60},(_,i)=>`<option value="${i}"${i===p.idx?" selected":""}>${gz(i)} ${gzk(i)}</option>`).join("");
     el.innerHTML=`<input type="text" value="${esc(p.name)}" aria-label="이름" maxlength="8">
       <select aria-label="일주">${opts}</select>
-      <span class="bd"><select data-a="cal" aria-label="양력 음력"><option value="solar"${p.cal!=="lunar"?" selected":""}>양력</option><option value="lunar"${p.cal==="lunar"?" selected":""}>음력</option></select><input type="text" inputmode="numeric" class="birth" aria-label="생년월일" placeholder="1990-01-30" value="${esc(p.birth||"")}"><label class="leap"${p.cal==="lunar"?"":" hidden"}><input type="checkbox" data-a="leap"${p.leap?" checked":""}>윤달</label><button type="button" data-a="find">생년월일로 조회</button></span>
+      <span class="bd"><select data-a="cal" aria-label="양력 음력"><option value="solar"${p.cal!=="lunar"?" selected":""}>양력</option><option value="lunar"${p.cal==="lunar"?" selected":""}>음력</option></select><input type="text" inputmode="numeric" class="birth" aria-label="생년월일" placeholder="1990-01-30" value="${esc(p.birth||"")}"><label class="leap"${p.cal==="lunar"?"":" hidden"}><input type="checkbox" data-a="leap"${p.leap?" checked":""}>윤달</label><span class="tm"><input type="time" class="btime" aria-label="태어난 시간" value="${esc(p.time||"")}"${p.time?"":" disabled"}><label><input type="checkbox" data-a="tunk"${p.time?"":" checked"}>시간 모름</label></span><button type="button" data-a="find">생년월일로 조회</button></span>
       <span class="gzp">${p.idx<0?"?":gz(p.idx)}</span>${p.msg?`<span class="pmsg">${esc(p.msg)}</span>`:""}
       <label class="show"><input type="checkbox" data-a="on" ${p.on?"checked":""}> 달력에 표시</label>
       ${k?'<button type="button" data-a="del" aria-label="빼기">×</button>':""}`;
@@ -247,6 +251,8 @@ function drawPeople(){
     el.querySelector("input.birth").onkeydown=e=>{if(e.key==="Enter")el.querySelector('[data-a="find"]').click()};
     el.querySelector('[data-a="cal"]').onchange=e=>{p.cal=e.target.value;p.msg="";drawPeople()};
     el.querySelector('[data-a="leap"]').onchange=e=>{p.leap=e.target.checked;persist()};
+    el.querySelector('[data-a="tunk"]').onchange=e=>{const t=el.querySelector("input.btime"); t.disabled=e.target.checked; if(e.target.checked){t.value="";p.time="";} else t.focus(); persist()};
+    el.querySelector("input.btime").oninput=e=>{p.time=e.target.value;persist()};
     el.querySelector('[data-a="find"]').onclick=()=>{
       const v=el.querySelector("input.birth").value.trim(); p.birth=v;
       if(!v){p.msg="생년월일을 먼저 넣어 주세요";drawPeople();return}
@@ -262,8 +268,14 @@ function drawPeople(){
         const so=c.getSolarCalendar(); label=`음력 ${y}.${m}.${d}${p.leap?"(윤달)":""} = 양력 ${so.year}.${so.month}.${so.day}`;
         [y,m,d]=[so.year,so.month,so.day];
       }
+      const tv=(el.querySelector("input.btime").value||"").trim(); p.time=tv;
+      let note="", next=false;
+      if(tv){ const [hh,mi]=tv.split(":").map(Number); next = hh*60+mi >= 23*60+30;
+        note = next ? ` · ${tv} 출생: 자시(밤 11시 30분)가 지나 다음 날 일주로 봤어요` : ` · ${tv} 출생`; }
+      else note=" · 시간 모름: 밤 11시 30분 이후 출생이면 다음 날 일주일 수 있어요";
+      if(next){ const t=new Date(y,m-1,d+1); [y,m,d]=[t.getFullYear(),t.getMonth()+1,t.getDate()]; }
       p.idx=dayIdx(y,m,d);
-      p.msg=`${label}생 → ${gz(p.idx)}(${gzk(p.idx)}) 일주 · 밤 11시 이후 출생이면 하루 다를 수 있어요`; drawPeople();render()};
+      p.msg=`${label}생 → ${gz(p.idx)}(${gzk(p.idx)}) 일주${note}`; drawPeople();render()};
     el.querySelector('[data-a="on"]').onchange=e=>{p.on=e.target.checked;drawPeople();render()};
     const del=el.querySelector('[data-a="del"]'); if(del) del.onclick=()=>{people.splice(k,1);drawPeople();render()};
     box.append(el);
